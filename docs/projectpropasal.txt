@@ -1,0 +1,9 @@
+Proposal: How “weak” does a “weak learner” need to be?
+
+In this project, the investigators set out to understand how “strong” a “weak learner” must be to do successful ADA boosting. Using the ADA boosting procedure, we intend to investigate how strongly the “weak learner” must be trained to be successful machine learning algorithm
+
+Procedure:
+The methods implemented in this paper are as such: a fully connect CNN used as the weak learner using the (blank) data set. The hyper parameters we will be using is the training data size used to learn with and the number of weak learners used in the ada process.
+
+Goals and expectations:
+We intend to find the threshold at which a weak learner has been trained enough to demonstrate sufficient accuracy to be a useable algorithm to classify the data set. This means changing both the depth of training and number of weak learners used in the classification process. 
