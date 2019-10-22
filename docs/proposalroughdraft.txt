@@ -29,7 +29,7 @@ are looking to answer, we are interested the full range that the overall classif
 of algorithm takes. In particular, we are interested in how changing the tuning parameters turns 
 a “weak” algorithm (one with above random guessing but not completely accurate) to a “strong” 
 algorithm (one with a high classification accuracy). A successful implantation of the answering 
-our question will show a smooth transition from “weak” to “strong” algorithm. 
+our question will show a smooth transition from “weak” to “strong” algorithm. The hyper parameters used to demonstrate this transition will the training size of the CNNs and the number of "weak learners" used in the ADA implementation (i.e the k value from the figure above)
 
 
 Resources:
