@@ -22,7 +22,7 @@ Introduction:
 Motivation:  Often times machine learning enthusiasts are eager to find the optimal model, 
 then go about tuning their parameters through “guess-and-check” method. However, very sophisticated or complex models 
 may suffer from high run-time or the curse of high dimensionality. We can avoid these problems while 
-still maximizing predictive power by using ADA boosting, a set of “weak learners” is chained together to make a more 
+still maximizing predictive power by using ADA boosting, where a set of “weak learners” is chained together to make a more 
 successful algorithm. While the rest of the algorithm is clearly defined, the definition of what 
 a “weak learner” is vague and up to user. In our project we hope to quantify this idea by ranging 
 our hyper parameters of the “weak learner” and observing how these values affect the 
