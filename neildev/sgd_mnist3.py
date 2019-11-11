@@ -16,6 +16,9 @@ num_classes = 10
 batch_size = 32
 epochs = 1
 
+# the CNN does not work by default with the adaclassifier. Known issue
+# fix is in adakeras.py
+
 # input image dimensions
 img_rows, img_cols = 28, 28
 

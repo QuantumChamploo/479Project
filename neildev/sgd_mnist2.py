@@ -1,4 +1,3 @@
-from sklearn.ensemble import AdaBoostClassifier
 from __future__ import print_function
 import keras
 from keras.datasets import mnist
@@ -8,12 +7,16 @@ from keras.layers import Conv2D, MaxPooling2D
 from keras import backend as K
 import numpy as np
 from keras.optimizers import SGD
-
+from sklearn.ensemble import AdaBoostClassifier
 from sklearn.model_selection import train_test_split
 
 num_classes = 10
 batch_size = 32
 epochs = 1
+
+# attempts at using the ADAregression, but it did not play nice with the 
+# neural net
+
 
 # input image dimensions
 img_rows, img_cols = 28, 28
@@ -93,7 +96,7 @@ model2.compile(loss=keras.losses.categorical_crossentropy,
 
 
 classifier = AdaBoostClassifier(
-    model1,
+    model,
     n_estimators=40
 )
 

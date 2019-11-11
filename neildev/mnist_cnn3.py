@@ -5,6 +5,8 @@ Gets to 99.25% test accuracy after 12 epochs
 16 seconds per epoch on a GRID K520 GPU.
 '''
 
+# I do not think this is much different than mnist_cnn.py
+
 from __future__ import print_function
 import keras
 from keras.datasets import mnist

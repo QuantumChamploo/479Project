@@ -13,6 +13,8 @@ from keras.wrappers.scikit_learn import KerasRegressor
 
 from sklearn.model_selection import train_test_split
 
+# What I believe is a proper work around to make ada work well with CNN
+
 sgd = SGD(lr=0.001, decay=1e-6, momentum=0.9, nesterov=True)
 
 num_classes = 10

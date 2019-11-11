@@ -5,6 +5,10 @@ Gets to 99.25% test accuracy after 12 epochs
 16 seconds per epoch on a GRID K520 GPU.
 '''
 
+# Similiar to mnist_cnn.py, but have added the ability to modulate
+# the number of training examples, which will be important to controlling
+# the weakness of future learners
+
 from __future__ import print_function
 import keras
 from keras.datasets import mnist

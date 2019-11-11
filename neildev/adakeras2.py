@@ -19,6 +19,9 @@ num_classes = 10
 batch_size = 32
 epochs = 1
 
+# trying to what was done in adakeras.py but witha different CNN. I am not sure why this does not work
+# while the other does. an open question
+
 # input image dimensions
 img_rows, img_cols = 28, 28
 

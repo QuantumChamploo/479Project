@@ -4,6 +4,9 @@ Gets to 99.25% test accuracy after 12 epochs
 (there is still a lot of margin for parameter tuning).
 16 seconds per epoch on a GRID K520 GPU.
 '''
+# This is taken from the keras folder examples. Just a simple implementation of
+# a CNN to do minst
+
 
 from __future__ import print_function
 import keras
