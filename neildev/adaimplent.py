@@ -84,11 +84,20 @@ def calc_error(w_arr,model,X,y):
 
 
 
-def update_weights(w_arr,model,err):
-	alpha = .5 * math.log((1-err)/err)
-	print (alpha)
+def update_weights(w_arr,model,err,y):
+
+	alpha = 2*(err)
+
+	guesses = model.predict_classes(X)
+
 	for val in w_arr:
-		return
+		if(guesses[i] == np.argmax(y[i])):
+			val = val*Math.exp(alpha)
+		else:
+			val = val*Math.exp(-1*alpha)
+
+	
+		
 
 
 

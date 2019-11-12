@@ -15,7 +15,7 @@ from sklearn.model_selection import train_test_split
 
 # What I believe is a proper work around to make ada work well with CNN
 
-sgd = SGD(lr=0.001, decay=1e-6, momentum=0.9, nesterov=True)
+sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 
 num_classes = 10
 batch_size = 32
@@ -36,8 +36,8 @@ x_test = x_test.astype('float32')
 x_train /= 255
 x_test /= 255
 
-x_train = x_train[:10000]
-y_train = y_train[:10000]
+x_train = x_train[:1000]
+y_train = y_train[:1000]
 
 
 

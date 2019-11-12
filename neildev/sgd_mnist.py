@@ -8,6 +8,9 @@ from keras import backend as K
 import numpy as np
 from keras.optimizers import SGD
 
+
+# SGD optimizer on a CNN. multiple model implementation
+
 num_classes = 10
 batch_size = 32
 epochs = 1
@@ -97,7 +100,7 @@ weights = weights[:10000]
 print ("train shape is ")
 print (x_trainer.shape[0])
 
-weights /= (x_trainer.shape[0])
+#weights /= (x_trainer.shape[0])
 
 #fit the model 
 

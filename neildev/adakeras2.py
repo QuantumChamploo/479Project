@@ -51,10 +51,10 @@ def simple_model():
 	# in the first layer, you must specify the expected input data shape:
 	# here, 784-dimensional vectors.
 	model.add(Dense(64, activation='relu',kernel_initializer='normal', input_dim=img_rows*img_cols))
-	model.add(Dropout(0.5))
+	model.add(Dropout(0.5, input_shape=(x_train.shape[1],)))
 	model.add(Dense(64, kernel_initializer='normal', activation='relu'))
 	model.add(Dropout(0.5))
-	model.add(Dense(10, kernel_initializer='normal', activation='softmax'))
+	model.add(Dense(10, kernel_initializer='normal', activation='relu'))
 	model.add(Dense(1, kernel_initializer='normal'))
     # Compile model
 	model.compile(loss=keras.losses.categorical_crossentropy, optimizer=sgd, metrics=['accuracy'])
