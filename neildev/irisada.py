@@ -1,4 +1,4 @@
-# Load libraries
+pytho# Load libraries
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn import datasets
 # Import train_test_split function

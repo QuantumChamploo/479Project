@@ -124,8 +124,8 @@ model2.fit(x_trainer, y_trainer,
 )
 
 
-score1 = model.evaluate(x_test, y_test, verbose=0)
-score2 = model2.evaluate(x_test, y_test, verbose=0)
+score1 = model.evaluate(x_test, y_test, verbose=1)
+score2 = model2.evaluate(x_test, y_test, verbose=1)
 
 
 print('Test1 loss:', score1[0])

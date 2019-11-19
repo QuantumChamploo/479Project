@@ -56,7 +56,7 @@ def simple_model():
 	model.add(Dropout(0.5))
 	model.add(Dense(10, kernel_initializer='normal', activation='relu'))
 	model.add(Dense(1, kernel_initializer='normal'))
-    # Compile model
+    # Compile model 
 	model.compile(loss=keras.losses.categorical_crossentropy, optimizer=sgd, metrics=['accuracy'])
 
 	return model

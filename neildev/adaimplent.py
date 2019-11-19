@@ -61,6 +61,8 @@ weights = weights[:1000]
 # 		wrong += 1
 # 	print (right / (right + wrong))
 
+# np.mean(y_true == np.argmax)
+
 
 def calc_error(w_arr,model,X,y):
 	err = 0
@@ -81,7 +83,9 @@ def calc_error(w_arr,model,X,y):
 
 
 
-
+def calc_error2(w_arr, model, X, y):
+	guesses = model.predict_classes(X)
+	return np.mean(np.argmax(y, axis=1).astype(int) == guesses)
 
 
 def update_weights(w_arr,model,err,y):
@@ -133,8 +137,10 @@ models[0].fit(x_trainer, y_trainer,
 
 )
 
-
-update_weights(weights,models[0],calc_error(weights,models[0],x_trainer,y_trainer))
+print(calc_error2(weights,models[0],x_trainer,y_trainer))
+print(weights)
+print(model.evaluate(x_trainer, y_trainer, sample_weight=weights))
+#update_weights(weights,models[0],calc_error(weights,models[0],x_trainer,y_trainer))
 
 # for j in range(k):
 # 	models[j].fit(x_trainer, y_trainer,
