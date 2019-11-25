@@ -74,7 +74,7 @@ def calc_error(w_arr,model,X,y):
 			right += 1
 		else:
 			wrong += 1
-			err += 1
+			err += (1*w_arr[i])
 
 	print (" the acc is ")
 	print (right / (right + wrong))
@@ -88,17 +88,46 @@ def calc_error2(w_arr, model, X, y):
 	return np.mean(np.argmax(y, axis=1).astype(int) == guesses)
 
 
-def update_weights(w_arr,model,err,y):
+def update_weights(w_arr,model,X,y):
 
-	alpha = 2*(err)
+	# make sure to add log(9) because we have 10 digits 
+
+	err = calc_error(w_arr,model,X, y)
+
+	length = w_arr.shape[0]
+
+
+	alpha = (math.log((1-err)/err) + math.log(9))
 
 	guesses = model.predict_classes(X)
+	print("alpha is")
+	print (alpha)
+	print (w_arr)
 
-	for val in w_arr:
+	for i in range(length):
 		if(guesses[i] == np.argmax(y[i])):
-			val = val*Math.exp(alpha)
+			pass
 		else:
-			val = val*Math.exp(-1*alpha)
+			
+			w_arr[i] = (w_arr[i]*math.exp(alpha))
+
+	# renomarlize w_arr
+	val = 0
+
+	for i in range(length):
+		val += (w_arr[i])*(w_arr[i])
+
+	#val = math.sqrt(val)
+
+	w_arr /= val
+	total = 0
+	for i in range(length):
+		total += w_arr[i]
+	print ("total is")
+	print (total)	
+	w_arr *= length
+
+	return w_arr
 
 	
 		
@@ -111,6 +140,7 @@ def update_weights(w_arr,model,err,y):
 k = 3
 
 models = []
+
 
 for i in range(k):
 	model = Sequential()
@@ -138,8 +168,12 @@ models[0].fit(x_trainer, y_trainer,
 )
 
 print(calc_error2(weights,models[0],x_trainer,y_trainer))
-print(weights)
+#print(weights)
 print(model.evaluate(x_trainer, y_trainer, sample_weight=weights))
+
+weights = update_weights(weights,models[0],x_trainer, y_trainer)
+print(weights)
+
 #update_weights(weights,models[0],calc_error(weights,models[0],x_trainer,y_trainer))
 
 # for j in range(k):
