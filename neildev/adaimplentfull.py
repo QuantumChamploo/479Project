@@ -16,6 +16,7 @@ num_classes = 10
 batch_size = 32
 epochs = 1
 
+
 # input image dimensions
 img_rows, img_cols = 28, 28
 
@@ -41,7 +42,7 @@ sgd = SGD(lr=0.001, decay=1e-6, momentum=0.9, nesterov=True)
 
 weights = np.ones(x_train.shape[0])
 
-total = 3000
+total = 10000
 # new trainers
 x_trainer = x_train[:total]
 y_trainer = y_train[:total]
@@ -133,9 +134,17 @@ def make_guess(models,x):
 		#print(models[j].alpha)
 		#print("the arg max is ")
 		#print (np.argmax(models[j].predict(np.array([x,]))))
-		for i in range(10):
-			if(np.argmax(models[j].predict(np.array([x,]))) == i):
-				guesses[i] += models[j].alpha
+
+		hld = np.argmax(models[j].predict(np.array([x,])))
+		if(models[j].alpha > 0):
+			guesses[hld] += models[j].alpha
+
+		
+		#for i in range(10):
+		#	if(np.argmax(models[j].predict(np.array([x,]))) == i):
+		#		if(models[j].alpha > 0):
+		#			guesses[i] += models[j].alpha
+		
 	#print( guesses)
 
 	return np.argmax(guesses)
@@ -146,7 +155,7 @@ def make_guess(models,x):
 
 
 #number of weak learners we want to make
-k = 3
+k = 5
 
 models = []
 
@@ -167,15 +176,6 @@ for i in range(k):
               metrics=['accuracy'])
 
 
-#models[0].fit(x_trainer, y_trainer,batch_size=batch_size,epochs=epochs,verbose=1,sample_weight=weights,)
-
-#print(calc_error2(weights,models[0],x_trainer,y_trainer))
-#print (weights)
-#print(model.evaluate(x_trainer, y_trainer, sample_weight=weights))
-#update_weights(weights,models[0],calc_error(weights,models[0],x_trainer,y_trainer))
-
-#weights = update_weights(weights,models[0],x_trainer,y_trainer)
-#print (weights)
 
 
 
@@ -187,20 +187,12 @@ for i in range(k):
 
 
 
-val = 0
 
-for i in range(weights.shape[0]):
-	val += (weights[i])*(weights[i])
-
-print ("the lenghth is ")
-
-print (math.sqrt(val))
-print (math.sqrt(weights.shape[0]))
-
-print (x_test[0].shape)
 
 
 right = 0
+
+print( "calculating acc")
 
 for i in range(total):
 	guess = make_guess(models,x_test[i])
