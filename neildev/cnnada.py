@@ -54,6 +54,9 @@ class Cnnada:
 		self.broken = False 
 
 		for i in range(learners):
+			print (" on the ")
+			print (i)
+			print ('model')
 			model = Sequential()
 
 			# Dense(64) is a fully-connected layer with 64 hidden units.
@@ -102,7 +105,9 @@ class Cnnada:
 	def adafit(self):
 		for i in range(self.learners):
 			self.models[i].fit(self.x_trainer,self.y_trainer,batch_size=batch_size,verbose=1,sample_weight=self.weights)
-			self.weights = self.update_weights(i)		
+			self.weights = self.update_weights(i)
+			if(self.broken):
+				self.brokeat = i
 
 	def update_weights(self, model_num):
 		w_arr = self.weights
@@ -172,7 +177,47 @@ class Cnnada:
 
 		return np.argmax(guesses)	
 
+	def base_test_acc(self):
+		model = self.models[0]
+		X = x_test
+		y = y_test
 
+		guesses = model.predict_classes(X)
+
+		right = 0
+		for i in range(10000):
+
+			if(guesses[i] == np.argmax(y[i])):
+				right += 1
+		self.base_test_acc = right/10000
+
+		return right/10000
+
+	def base_train_acc(self):
+		model = self.models[0]
+		X = self.x_trainer
+		y = self.y_trainer
+
+		guesses = model.predict_classes(X)
+
+		right = 0
+		for i in range(self.size):
+			if(guesses[i] == np.argmax(y[i])):
+				right += 1
+		self.base_train_acc = right/self.size
+
+		return right/self.size
+
+	def train_acc(self):
+		right = 0
+		for i in range(self.size):
+			guess = self.make_guess(self.x_trainer[i]);
+			actual = np.argmax(self.y_trainer[i])
+			if(guess == actual):
+				right += 1
+		self.trainacc = right/self.size
+
+		return (right/self.size)
 
 	def calc_acc(self):
 		right = 0
@@ -182,6 +227,7 @@ class Cnnada:
 
 			if(guess == actual):
 				right += 1
+		self.testacc = right/10000
 
 		return (right/10000)
 
