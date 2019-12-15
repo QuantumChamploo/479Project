@@ -36,6 +36,9 @@ x_test /= 255
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
+print ("y shape")
+print(y_test.shape[0])
+
 
 # use the sgd optimizer
 sgd = SGD(lr=0.001, decay=1e-6, momentum=0.9, nesterov=True)
