@@ -36,7 +36,7 @@ y_test = keras.utils.to_categorical(y_test, num_classes)
 
 
 # use the sgd optimizer
-sgd = SGD(lr=0.001, decay=1e-6, momentum=0.9, nesterov=True)
+sgd = SGD(lr=0.0005, decay=1e-6, momentum=0.9, nesterov=True)
 
 
 
@@ -54,9 +54,7 @@ class Cnnada:
 		self.broken = False 
 
 		for i in range(learners):
-			print (" on the ")
-			print (i)
-			print ('model')
+
 			model = Sequential()
 
 			# Dense(64) is a fully-connected layer with 64 hidden units.
@@ -97,17 +95,22 @@ class Cnnada:
 					err += 1*w_arr[i]
 
 			# a more accurate acc
-			print (" the acc is ")
-			print (right / (right + wrong))
+			#print (" the acc is ")
+			#print (right / (right + wrong))
+			acc = right/(right + wrong)
+			if(acc <= .1):
+				self.broken = True
 			
 			return (err/wsum)
 
 	def adafit(self):
+
 		for i in range(self.learners):
-			self.models[i].fit(self.x_trainer,self.y_trainer,batch_size=batch_size,verbose=1,sample_weight=self.weights)
-			self.weights = self.update_weights(i)
-			if(self.broken):
-				self.brokeat = i
+			if(self.broken == False):
+				self.models[i].fit(self.x_trainer,self.y_trainer,batch_size=batch_size,verbose=1,sample_weight=self.weights)
+				self.weights = self.update_weights(i)
+				if(self.broken):
+					self.brokeat = i
 
 	def update_weights(self, model_num):
 		w_arr = self.weights
@@ -124,7 +127,9 @@ class Cnnada:
 		# keep the alpha value for later
 		self.alphas.append(alpha)
 		if(alpha < 0):
+
 			self.broken = True
+			print("tried to break")
 
 		length = self.size
 
