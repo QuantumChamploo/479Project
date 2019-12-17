@@ -1,6 +1,6 @@
 from cnnada import *
 
-ada1 = Cnnada(9,1000)
+ada1 = Cnnada(3,10000)
 ada1.adafit()
 
 print("the test acc is")

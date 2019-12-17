@@ -15,18 +15,25 @@ x = []
 y = []
 x_dev = []
 y_dev = []
+num = 0
 
-for j in range(6):
+for j in range(1):
 	breakvalue = []
 	accvalue = []
 
-	for i in range(15):
+	for i in range(10):
+		num += 1
 		ada1 = Cnnada(200,(j+1)*500)
 		ada1.adafit()
 		if(ada1.broken == True):
-			breakvalue.append(ada1.brokeat)
-			accvalue.append(ada1.base_test_acc())
-
+			hld = int(ada1.brokeat)
+			breakvalue.append(hld)
+			hld2 = float(ada1.base_test_acc())
+			accvalue.append(hld2)
+		ada1 = None	
+		print("we are")
+		print((num/(40)))
+		print("percent done")
 	acc_arr = np.array(accvalue)
 	break_arr = np.array(breakvalue)
 

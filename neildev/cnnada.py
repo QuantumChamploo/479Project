@@ -36,7 +36,7 @@ y_test = keras.utils.to_categorical(y_test, num_classes)
 
 
 # use the sgd optimizer
-sgd = SGD(lr=0.0005, decay=1e-6, momentum=0.9, nesterov=True)
+sgd = SGD(lr=0.0001, decay=1e-6, momentum=0.9, nesterov=True)
 
 
 
@@ -106,7 +106,8 @@ class Cnnada:
 	def adafit(self):
 
 		for i in range(self.learners):
-			if(self.broken == False):
+			#if(self.broken == False):
+			if(True):
 				self.models[i].fit(self.x_trainer,self.y_trainer,batch_size=batch_size,verbose=1,sample_weight=self.weights)
 				self.weights = self.update_weights(i)
 				if(self.broken):
@@ -164,7 +165,7 @@ class Cnnada:
 
 		guesses = np.zeros(10)
 		for j in range(len(self.models)):
-			#print(models[j].alpha)
+			#print(self.alphas)
 			#print("the arg max is ")
 			#print (np.argmax(models[j].predict(np.array([x,]))))
 

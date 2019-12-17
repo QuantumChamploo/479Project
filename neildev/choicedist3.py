@@ -60,11 +60,11 @@ def acc_value(alpha, ntrials):
 	#print("overall acc")
 	return right/ntrials
 
-alphas = np.linspace(0, 0.3, 100)
+alphas = np.linspace(0, 1, 100)
 n_trials= 100000
 vals = [acc_value(a, n_trials) for a in alphas]
 
 plt.plot(alphas, vals)
-plt.plot(np.linspace(0, 0.3, 300), np.linspace(0, 0.3, 300))
+plt.plot(np.linspace(0, 1, 300), np.linspace(0, 1, 300))
 #plt.savefig('my_plot')
 plt.show()
